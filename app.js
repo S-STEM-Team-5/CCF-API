@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 //Creating DB connection and logging
 mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
@@ -11,6 +12,7 @@ mongoose.connection.on('open', () => console.log('Connected to Database'));
 
 
 //Middleware
+app.use(cors());
 app.use(express.json());
 
 //Routes
