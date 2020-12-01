@@ -86,12 +86,14 @@ async function getAccountVerification(req, res, next) {
       password: req.body.password
     });
     if (account == null || account.length == 0) {
-      return res.status(404).json({
+      return res.status(200).json({
         message: 'Cannot find Account'
       });
     }
     else {
-      return res.json('Account Verified');
+      return res.json({
+        message: 'Account Verified'
+      });
     }
   } catch (err) {
     return res.status(500).json({

@@ -28,13 +28,14 @@ const getRequestAccount = async () => {
   }
 };
 
-const postRequestAccount = async () => {
-  try {
-    const response = await axios.post('http://localhost:3013/rest/account/', body);
-  } catch (err) {
-    console.log(err);
+async function postRequest() {
+  var data = {
+    email : 'joe@appstate.edu',
+    password: 'password'
   }
-};
+  const resonse  = await axios.post('http://localhost:3013/rest/account/signin', data);
+  console.log(resonse.data);
+}
 
 //Post example
 // function createAccount() {
@@ -50,5 +51,5 @@ const postRequestAccount = async () => {
 //   axios.post('http://localhost:3013/rest/account/', body);
 // }
 
-//postRequestAccount();
-getRequestAccount();
+//getRequestAccount()
+postRequest();
