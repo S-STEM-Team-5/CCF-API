@@ -37,19 +37,20 @@ async function postRequest() {
   console.log(resonse.data);
 }
 
-//Post example
-// function createAccount() {
-//   var body = {
-//     accType: "Volunteer",
-//     email: "kevin@appstate.edu",
-//     password: "password",
-//     name: {
-//       fname: "Kevin",
-//       lname: ""
-//     }
-//   };
-//   axios.post('http://localhost:3013/rest/account/', body);
-// }
+//Register Post Request
+async function postRequestRegister() {
+    var data = {
+        "accType": "parent",
+        "email": "hellwo",
+        "password": "ok",
+        "name" : {
+            "fname" : "ok",
+            "lname" :"ok"
+        }
+    }
+    const response = await axios.post('http://localhost:3013/rest/account', data);
+    console.log(response.status);
+    return response.data;
+}
 
-//getRequestAccount()
-postRequest();
+postRequestRegister();

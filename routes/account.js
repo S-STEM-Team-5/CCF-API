@@ -39,8 +39,8 @@ router.post('/', async (req, res) => {
     const newAccount = await account.save();
     res.status(201).json(account);
   } catch (err) {
-    res.status(400).json({
-      message: err.message
+    res.status(200).json({
+      message: 'Account already exists'
     });
   }
 });
