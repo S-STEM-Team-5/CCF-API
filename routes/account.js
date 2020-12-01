@@ -92,7 +92,8 @@ async function getAccountVerification(req, res, next) {
     }
     else {
       return res.json({
-        message: 'Account Verified'
+        message: 'Account Verified',
+        accType: account[0].accType
       });
     }
   } catch (err) {

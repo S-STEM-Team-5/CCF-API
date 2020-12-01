@@ -37,6 +37,15 @@ async function postRequest() {
   console.log(resonse.data);
 }
 
+async function getUserFromEmail() {
+  const endpoint = 'http://localhost:3013/rest/account/' +
+  'hillbj1@appstate.edu';
+
+  const response = await axios.get(endpoint);
+  console.log(response.data[0].accType);
+  return response.data[0].accType;
+}
+
 //Register Post Request
 async function postRequestRegister() {
     var data = {
@@ -53,4 +62,4 @@ async function postRequestRegister() {
     return response.data;
 }
 
-postRequestRegister();
+getUserFromEmail();
