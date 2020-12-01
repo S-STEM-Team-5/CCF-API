@@ -8,7 +8,9 @@ router.get('/', async (req, res) => {
     const camper = await Camper.find();
     res.json(camper);
   } catch (err) {
-    res.status(500).json({message : err.message});
+    res.status(500).json({
+      message: err.message
+    });
   }
 });
 
@@ -69,7 +71,9 @@ router.post('/', async (req, res) => {
     const newCamper = await camper.save();
     res.status(201).json(camper);
   } catch (err) {
-    res.status(400).json({message : err.message});
+    res.status(400).json({
+      message: err.message
+    });
   }
 });
 
@@ -79,7 +83,9 @@ router.delete('/:email', getCamper, async (req, res) => {
     await res.camper[0].remove();
     res.json('Deleted Account');
   } catch (err) {
-    res.status(500).json({ message: err.message});
+    res.status(500).json({
+      message: err.message
+    });
   }
 });
 
@@ -87,12 +93,18 @@ router.delete('/:email', getCamper, async (req, res) => {
 async function getCamper(req, res, next) {
   let camper;
   try {
-    camper = await Camper.find({ guardianEmail: req.params.email});
+    camper = await Camper.find({
+      guardianEmail: req.params.email
+    });
     if (camper == null || camper.length == 0) {
-      return res.status(404).json({ message: 'Cannot find Camper'});
+      return res.status(404).json({
+        message: 'Cannot find Camper'
+      });
     }
   } catch (err) {
-      return res.status(500).json({ message: err.message});
+    return res.status(500).json({
+      message: err.message
+    });
   }
   res.camper = camper;
   next();

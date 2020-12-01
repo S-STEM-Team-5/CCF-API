@@ -8,7 +8,9 @@ router.get('/', async (req, res) => {
     const guardian = await Guardian.find();
     res.json(guardian);
   } catch (err) {
-    res.status(500).json({message : err.message});
+    res.status(500).json({
+      message: err.message
+    });
   }
 });
 
@@ -21,7 +23,7 @@ router.get('/:email', getGuardian, (req, res) => {
 router.post('/', async (req, res) => {
   const guardian = new Guardian({
     email: req.body.email,
-    contactInfo : {
+    contactInfo: {
       homePhone: req.body.contactInfo.homePhone,
       workPhone: req.body.contactInfo.workPhone,
       emergencyPhone: req.body.contactInfo.emergencyPhone
@@ -31,7 +33,9 @@ router.post('/', async (req, res) => {
     const newGuardian = await guardian.save();
     res.status(201).json(guardian);
   } catch (err) {
-    res.status(400).json({message : err.message});
+    res.status(400).json({
+      message: err.message
+    });
   }
 });
 
@@ -41,7 +45,9 @@ router.delete('/:email', getGuardian, async (req, res) => {
     await res.guardian[0].remove();
     res.json('Deleted Account');
   } catch (err) {
-    res.status(500).json({ message: err.message});
+    res.status(500).json({
+      message: err.message
+    });
   }
 });
 
@@ -49,12 +55,18 @@ router.delete('/:email', getGuardian, async (req, res) => {
 async function getGuardian(req, res, next) {
   let guardian;
   try {
-    guardian = await Guardian.find({ email: req.params.email});
+    guardian = await Guardian.find({
+      email: req.params.email
+    });
     if (guardian == null || guardian.length == 0) {
-      return res.status(404).json({ message: 'Cannot find Guardian'});
+      return res.status(404).json({
+        message: 'Cannot find Guardian'
+      });
     }
   } catch (err) {
-      return res.status(500).json({ message: err.message});
+    return res.status(500).json({
+      message: err.message
+    });
   }
   res.guardian = guardian;
   next();

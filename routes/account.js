@@ -8,7 +8,9 @@ router.get('/', async (req, res) => {
     const account = await Account.find();
     res.json(account);
   } catch (err) {
-    res.status(500).json({message : err.message});
+    res.status(500).json({
+      message: err.message
+    });
   }
 });
 
@@ -32,7 +34,9 @@ router.post('/', async (req, res) => {
     const newAccount = await account.save();
     res.status(201).json(account);
   } catch (err) {
-    res.status(400).json({message : err.message});
+    res.status(400).json({
+      message: err.message
+    });
   }
 });
 
@@ -42,7 +46,9 @@ router.delete('/:email', getAccount, async (req, res) => {
     await res.account[0].remove();
     res.json('Deleted Account');
   } catch (err) {
-    res.status(500).json({ message: err.message});
+    res.status(500).json({
+      message: err.message
+    });
   }
 });
 
@@ -50,12 +56,18 @@ router.delete('/:email', getAccount, async (req, res) => {
 async function getAccount(req, res, next) {
   let account;
   try {
-    account = await Account.find({ email: req.params.email});
+    account = await Account.find({
+      email: req.params.email
+    });
     if (account == null || account.length == 0) {
-      return res.status(404).json({ message: 'Cannot find Account'});
+      return res.status(404).json({
+        message: 'Cannot find Account'
+      });
     }
   } catch (err) {
-      return res.status(500).json({ message: err.message});
+    return res.status(500).json({
+      message: err.message
+    });
   }
   res.account = account;
   next();

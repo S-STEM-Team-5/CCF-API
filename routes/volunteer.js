@@ -8,7 +8,9 @@ router.get('/', async (req, res) => {
     const volunteer = await Volunteer.find();
     res.json(volunteer);
   } catch (err) {
-    res.status(500).json({message : err.message});
+    res.status(500).json({
+      message: err.message
+    });
   }
 });
 
@@ -48,7 +50,9 @@ router.post('/', async (req, res) => {
     const newVolunteer = await volunteer.save();
     res.status(201).json(volunteer);
   } catch (err) {
-    res.status(400).json({message : err.message});
+    res.status(400).json({
+      message: err.message
+    });
   }
 });
 
@@ -58,7 +62,9 @@ router.delete('/:email', getVolunteer, async (req, res) => {
     await res.volunteer[0].remove();
     res.json('Deleted Account');
   } catch (err) {
-    res.status(500).json({ message: err.message});
+    res.status(500).json({
+      message: err.message
+    });
   }
 });
 
@@ -66,12 +72,18 @@ router.delete('/:email', getVolunteer, async (req, res) => {
 async function getVolunteer(req, res, next) {
   let volunteer;
   try {
-    volunteer = await Volunteer.find({ volEmail: req.params.email});
+    volunteer = await Volunteer.find({
+      volEmail: req.params.email
+    });
     if (volunteer == null || volunteer.length == 0) {
-      return res.status(404).json({ message: 'Cannot find Volunteer'});
+      return res.status(404).json({
+        message: 'Cannot find Volunteer'
+      });
     }
   } catch (err) {
-      return res.status(500).json({ message: err.message});
+    return res.status(500).json({
+      message: err.message
+    });
   }
   res.volunteer = volunteer;
   next();
