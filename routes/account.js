@@ -19,6 +19,11 @@ router.get('/:email', getAccount, (req, res) => {
   res.send(res.account);
 });
 
+//Getting account(s) by email
+router.post('/signin', getAccountVerification, (req, res) => {
+});
+
+
 //Creating account
 router.post('/', async (req, res) => {
   const account = new Account({
@@ -63,6 +68,30 @@ async function getAccount(req, res, next) {
       return res.status(404).json({
         message: 'Cannot find Account'
       });
+    }
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message
+    });
+  }
+  res.account = account;
+  next();
+}
+
+async function getAccountVerification(req, res, next) {
+  let account;
+  try {
+    account = await Account.find({
+      email: req.body.email,
+      password: req.body.password
+    });
+    if (account == null || account.length == 0) {
+      return res.status(404).json({
+        message: 'Cannot find Account'
+      });
+    }
+    else {
+      return res.json('Account Verified');
     }
   } catch (err) {
     return res.status(500).json({
