@@ -80,6 +80,9 @@ const volunteerSchema = new mongoose.Schema({
   },
   gsignature: {
     type: String
+  },
+  status: {
+    type: String
   }
 });
 
