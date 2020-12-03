@@ -44,7 +44,8 @@ router.post('/', async (req, res) => {
     signature: req.body.signature,
     gname: req.body.gname,
     grelation: req.body.grelation,
-    gsignature: req.body.grelation
+    gsignature: req.body.grelation,
+    status: req.boy.status
   });
   try {
     const newVolunteer = await volunteer.save();
