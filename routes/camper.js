@@ -125,13 +125,13 @@ async function getCamperByEmail(req, res, next) {
       guardianEmail: req.params.email
     });
     if (camper == null || camper.length == 0) {
-      return res.status(404).json({
+      return res.status(200).json({
         message: 'Cannot find Camper'
       });
     }
   } catch (err) {
-    return res.status(500).json({
-      message: err.message
+    return res.status(200).json({
+      message: 'Invalid Request'
     });
   }
   res.camper = camper;
