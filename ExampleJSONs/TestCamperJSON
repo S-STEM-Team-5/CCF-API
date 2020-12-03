@@ -42,5 +42,6 @@
     "canSwim": true,
     "mostAnticipated": "me",
     "notes": "can't be controlled",
-    "applicationBy": true
+    "applicationBy": true,
+    "status": "Accepted"
 }
