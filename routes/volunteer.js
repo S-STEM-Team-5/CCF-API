@@ -45,15 +45,15 @@ router.post('/', async (req, res) => {
     gname: req.body.gname,
     grelation: req.body.grelation,
     gsignature: req.body.grelation,
-    status: req.boy.status
+    status: req.body.status
   });
   try {
     const newVolunteer = await volunteer.save();
     res.status(201).json(volunteer);
   } catch (err) {
-    res.status(400).json({
-      message: err.message
-    });
+    res.status(200).json(
+      "Application already exists"
+    );
   }
 });
 

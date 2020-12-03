@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const volunteerSchema = new mongoose.Schema({
   volEmail: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   birthDate: {
     type: String,
