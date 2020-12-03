@@ -13,7 +13,7 @@
     },
     "residence": "Home",
     "shirtSize": "Large",
-    "week": ["Well Week"],
+    "week": "Well Week",
     "previousCamper": false,
     "previousOvernightCamper": false,
     "canMakeFriends": false,

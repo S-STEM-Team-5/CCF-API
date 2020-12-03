@@ -46,7 +46,7 @@ const camperSchema = new mongoose.Schema({
     required: true
   },
   week: {
-    type: [String],
+    type: String,
     required: true
   },
   previousCamper: {

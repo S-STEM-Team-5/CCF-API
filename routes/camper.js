@@ -15,7 +15,12 @@ router.get('/', async (req, res) => {
 });
 
 //Getting by email
-router.get('/:id', getCamper, (req, res) => {
+router.get('/id/:id', getCamperByID, (req, res) => {
+  res.send(res.camper);
+});
+
+//Getting by email
+router.get('/email/:email', getCamperByEmail, (req, res) => {
   res.send(res.camper);
 });
 
@@ -78,7 +83,8 @@ router.post('/', async (req, res) => {
 });
 
 //Deleting camper
-router.delete('/:id', getCamper, async (req, res) => {
+//TODO: fix to alloy query params not /id
+router.delete('/id/:id', getCamperByID, async (req, res) => {
   try {
     await res.camper[0].remove();
     res.json('Deleted Account');
@@ -90,11 +96,32 @@ router.delete('/:id', getCamper, async (req, res) => {
 });
 
 //Middleware
-async function getCamper(req, res, next) {
+async function getCamperByID(req, res, next) {
   let camper;
   try {
     camper = await Camper.find({
       _id: req.params.id
+    });
+    if (camper == null || camper.length == 0) {
+      return res.status(200).json({
+        message: 'Cannot find Camper'
+      });
+    }
+  } catch (err) {
+    return res.status(200).json({
+      message: 'Invalid ID format'
+    });
+  }
+  res.camper = camper;
+  next();
+}
+
+//Middleware
+async function getCamperByEmail(req, res, next) {
+  let camper;
+  try {
+    camper = await Camper.find({
+      email: req.params.email
     });
     if (camper == null || camper.length == 0) {
       return res.status(404).json({
