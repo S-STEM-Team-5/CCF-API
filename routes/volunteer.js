@@ -76,7 +76,7 @@ async function getVolunteer(req, res, next) {
       volEmail: req.params.email
     });
     if (volunteer == null || volunteer.length == 0) {
-      return res.status(404).json({
+      return res.status(200).json({
         message: 'Cannot find Volunteer'
       });
     }
