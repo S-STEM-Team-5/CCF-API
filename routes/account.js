@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 
 //Getting account(s) by email
 router.get('/:email', getAccount, (req, res) => {
-  res.send(res.account);
+  res.send(res.account[0]);
 });
 
 //Getting account(s) by email
