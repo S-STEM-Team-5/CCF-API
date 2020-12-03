@@ -121,7 +121,7 @@ async function getCamperByEmail(req, res, next) {
   let camper;
   try {
     camper = await Camper.find({
-      email: req.params.email
+      guardianEmail: req.params.email
     });
     if (camper == null || camper.length == 0) {
       return res.status(404).json({
