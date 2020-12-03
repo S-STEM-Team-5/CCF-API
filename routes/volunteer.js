@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 
 //Getting by email
 router.get('/:email', getVolunteer, (req, res) => {
-  res.send(res.volunteer);
+  res.send(res.volunteer[0]);
 });
 
 //Creating one
