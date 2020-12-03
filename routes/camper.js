@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 });
 
 //Getting by email
-router.get('/:email', getCamper, (req, res) => {
+router.get('/:id', getCamper, (req, res) => {
   res.send(res.camper);
 });
 
@@ -78,7 +78,7 @@ router.post('/', async (req, res) => {
 });
 
 //Deleting camper
-router.delete('/:email', getCamper, async (req, res) => {
+router.delete('/:id', getCamper, async (req, res) => {
   try {
     await res.camper[0].remove();
     res.json('Deleted Account');
@@ -94,7 +94,7 @@ async function getCamper(req, res, next) {
   let camper;
   try {
     camper = await Camper.find({
-      guardianEmail: req.params.email
+      _id: req.params.id
     });
     if (camper == null || camper.length == 0) {
       return res.status(404).json({
