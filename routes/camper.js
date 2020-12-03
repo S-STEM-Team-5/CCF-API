@@ -70,7 +70,8 @@ router.post('/', async (req, res) => {
     canSwim: req.body.canSwim,
     mostAnticipated: req.body.mostAnticipated,
     notes: req.body.notes,
-    applicationBy: req.body.applicationBy
+    applicationBy: req.body.applicationBy,
+    status: req.body.status
   });
   try {
     const newCamper = await camper.save();

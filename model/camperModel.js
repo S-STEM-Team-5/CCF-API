@@ -139,6 +139,9 @@ const camperSchema = new mongoose.Schema({
   },
   applicationBy: {
     type: Boolean
+  },
+  status: {
+    type: String
   }
 });
 
